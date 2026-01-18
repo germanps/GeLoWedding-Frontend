@@ -1,29 +1,44 @@
 import React, { useState } from "react";
+import Layout from "./components/Layout";
 import Upload from "./components/Upload";
 import Gallery from "./components/Gallery";
 import GalleryLogin from "./components/GalleryLogin";
+import ninoh from './assets/lohninoh.jpg'
 
 export default function App() {
 	const [page, setPage] = useState("upload");
-	const [galleryKey, setGalleryKey] = useState(
-		localStorage.getItem("gallery_key") || ""
-	);
+	const [galleryKey, setGalleryKey] = useState("");
 
-	const onSetKey = (k) => {
-		localStorage.setItem("gallery_key", k);
-		setGalleryKey(k);
+	const onSetKey = (key) => {
+		setGalleryKey(key); // solo se guarda en memoria temporal
 		setPage("gallery");
 	};
 
 	return (
-		<div>
+		<Layout>
 			<header className="header">
-				<h1>Fotos de Nuestra Boda 💍✨</h1>
+				<h1>Lorena & Germán</h1>
+				<h2 className="subtitle">Comparte tus mejores recuerdos</h2>
+				<div className="img-wrapper">
+					<img
+						className="img-layout"
+						src={ninoh}
+					/>
+				</div>
 				<div className="nav">
-					<button className="button" onClick={() => setPage("upload")}>
+					<button
+						className="button"
+						onClick={() => setPage("upload")}
+					>
 						Subir
 					</button>
-					<button className="button" onClick={() => setPage("gallery")}>
+					<button
+						className="button"
+						onClick={() => {
+							setGalleryKey(""); // borra la clave cada vez
+							setPage("gallery");
+						}}
+					>
 						Galería
 					</button>
 				</div>
@@ -36,6 +51,6 @@ export default function App() {
 				) : (
 					<GalleryLogin onSetKey={onSetKey} />
 				))}
-		</div>
+		</Layout>
 	);
 }

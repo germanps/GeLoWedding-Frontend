@@ -4,12 +4,19 @@ export default function Upload() {
 	const [files, setFiles] = useState([]);
 	const [loading, setLoading] = useState(false);
 
+	const handleFilesChange = (e) => {
+		setFiles(Array.from(e.target.files));
+	};
+
 	const handleUpload = async () => {
-		if (!files || files.length === 0)
-			return alert("Selecciona al menos una foto");
+		if (!files.length) {
+			alert("Selecciona al menos una foto");
+			return;
+		}
+
 		setLoading(true);
-		const form = new FormData();
-		for (let f of files) form.append("photos", f);
+		const formData = new FormData();
+		files.forEach((file) => formData.append("photos", file));
 
 		try {
 			const res = await fetch(
@@ -18,14 +25,19 @@ export default function Upload() {
 					: "http://localhost:4000/api/upload",
 				{
 					method: "POST",
-					body: form,
+					body: formData,
 				}
 			);
+
 			const data = await res.json();
-			if (data.ok) alert("Fotos subidas. Gracias ❤️");
-			else alert("Error: " + (data.error || "desconocido"));
-		} catch (e) {
-			alert("Error subiendo: " + e.message);
+			if (data.ok) {
+				alert("Fotos subidas correctamente ❤️");
+				setFiles([]); // limpiar preview
+			} else {
+				alert("Error al subir fotos");
+			}
+		} catch (err) {
+			alert("Error de conexión");
 		} finally {
 			setLoading(false);
 		}
@@ -34,22 +46,60 @@ export default function Upload() {
 	return (
 		<div className="upload-card">
 			<h2>Sube tus fotos ❤️</h2>
-			<input type="file" multiple onChange={(e) => setFiles(e.target.files)} />
-			<div style={{ marginTop: 12 }}>
-				<button className="button" onClick={handleUpload} disabled={loading}>
-					{loading ? "Subiendo..." : "Subir Fotos"}
-				</button>
-			</div>
+
+			<input
+				type="file"
+				multiple
+				accept="image/*"
+				onChange={handleFilesChange}
+			/>
+
+			{/* PREVIEW */}
+			{files.length > 0 && (
+				<div style={previewContainer}>
+					{files.map((file, index) => (
+						<div key={index} style={previewItem}>
+							<img
+								src={URL.createObjectURL(file)}
+								alt="preview"
+								style={previewImage}
+							/>
+						</div>
+					))}
+				</div>
+			)}
+
+			<button
+				className="button"
+				onClick={handleUpload}
+				disabled={loading}
+				style={{ marginTop: "15px" }}
+			>
+				{loading ? "Subiendo..." : "Subir Fotos"}
+			</button>
+
 			<p style={{ marginTop: 10, color: "#777" }}>
-				Puedes subir varias fotos a la vez. Máx. 50 por petición.
+				Puedes seleccionar varias fotos. Se mostrarán antes de subir.
 			</p>
-			<div style={{ marginTop: 16 }}>
-				<img
-					src={process.env.PUBLIC_URL + "/preview.png"}
-					alt="preview"
-					style={{ width: 220, borderRadius: 12 }}
-				/>
-			</div>
 		</div>
 	);
 }
+
+const previewContainer = {
+	display: "grid",
+	gridTemplateColumns: "repeat(auto-fill, minmax(90px, 1fr))",
+	gap: "10px",
+	marginTop: "15px",
+};
+
+const previewItem = {
+	borderRadius: "8px",
+	overflow: "hidden",
+	boxShadow: "0 2px 6px rgba(0,0,0,0.15)",
+};
+
+const previewImage = {
+	width: "100%",
+	height: "90px",
+	objectFit: "cover",
+};
