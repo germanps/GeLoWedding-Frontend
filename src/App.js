@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import Upload from "./components/Upload";
 import Gallery from "./components/Gallery";
 import GalleryLogin from "./components/GalleryLogin";
-import ninoh from './assets/lohninoh.jpg'
+import ninoh from "./assets/lohninoh.jpg";
 
 export default function App() {
 	const [page, setPage] = useState("upload");
@@ -14,22 +14,22 @@ export default function App() {
 		setPage("gallery");
 	};
 
+	const showLogo = page !== "gallery"; // ← ocultar logo solo en Gallery
+
 	return (
 		<Layout>
 			<header className="header">
 				<h1>Lorena & Germán</h1>
 				<h2 className="subtitle">Comparte tus mejores recuerdos</h2>
-				<div className="img-wrapper">
-					<img
-						className="img-layout"
-						src={ninoh}
-					/>
-				</div>
+
+				{showLogo && (
+					<div className="img-wrapper">
+						<img className="img-layout" src={ninoh} />
+					</div>
+				)}
+
 				<div className="nav">
-					<button
-						className="button"
-						onClick={() => setPage("upload")}
-					>
+					<button className="button" onClick={() => setPage("upload")}>
 						Subir
 					</button>
 					<button

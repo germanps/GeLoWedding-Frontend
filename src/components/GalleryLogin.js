@@ -12,6 +12,8 @@ export default function GalleryLogin({ onSetKey }) {
 		<div className="login-card">
 			<h3>Introduce la clave para ver la galería</h3>
 			<input
+				id="loginInput"
+				name="login-input"
 				className="input"
 				value={key}
 				onChange={(e) => setKey(e.target.value)}
@@ -22,7 +24,7 @@ export default function GalleryLogin({ onSetKey }) {
 					Entrar
 				</button>
 			</div>
-			<p style={{ marginTop: 10, color: "#777" }}>
+			<p style={{ marginTop: 10, color: "#000" }}>
 				La clave la hemos facilitado a los invitados. Sólo quienes la tengan
 				podrán ver las fotos.
 			</p>

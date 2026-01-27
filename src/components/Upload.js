@@ -26,7 +26,7 @@ export default function Upload() {
 				{
 					method: "POST",
 					body: formData,
-				}
+				},
 			);
 
 			const data = await res.json();
@@ -45,14 +45,13 @@ export default function Upload() {
 
 	return (
 		<div className="upload-card">
-			<h2>Sube tus fotos ❤️</h2>
-
-			<input
-				type="file"
-				multiple
-				accept="image/*"
-				onChange={handleFilesChange}
-			/>
+			<p style={{ marginTop: 10, color: 'black', fontWeight: 'bold' }}>
+				Puedes seleccionar varias fotos. Se mostrarán antes de subir.
+			</p>
+			<label className="file-upload">
+				Selecciona tus fotos 🌿❤️
+				<input type="file" multiple onChange={handleFilesChange} />
+			</label>
 
 			{/* PREVIEW */}
 			{files.length > 0 && (
@@ -77,10 +76,6 @@ export default function Upload() {
 			>
 				{loading ? "Subiendo..." : "Subir Fotos"}
 			</button>
-
-			<p style={{ marginTop: 10, color: "#777" }}>
-				Puedes seleccionar varias fotos. Se mostrarán antes de subir.
-			</p>
 		</div>
 	);
 }
