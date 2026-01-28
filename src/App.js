@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import Upload from "./components/Upload";
 import Gallery from "./components/Gallery";
 import GalleryLogin from "./components/GalleryLogin";
-import ninoh from "./assets/lohninoh.jpg";
+import ninoh from "./assets/logo.jpg";
 
 export default function App() {
 	const [page, setPage] = useState("upload");

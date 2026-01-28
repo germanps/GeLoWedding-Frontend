@@ -6,6 +6,7 @@ body {
 
 .header {
 	padding: 1rem;
+  padding-top: 0;
 	text-align: center;
 }
 
@@ -87,25 +88,6 @@ h3 {
 	box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
 	text-align: center;
 }
-
-/* .gallery {
-	columns: 3 220px;
-	column-gap: 18px;
-	margin: 30px;
-}
-
-.gallery img {
-	width: 100%;
-	margin-bottom: 16px;
-	border-radius: 10px;
-	break-inside: avoid;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-	transition: transform 0.2s;
-} */
-
-/* .gallery img:hover {
-	transform: scale(1.02);
-} */
 
 .gallery {
 	display: grid;
@@ -293,7 +275,7 @@ h3 {
 /**********************************/
 .login-card {
 	background: #f8efe7;
-	width: 90%;
+	width: auto;
 	max-width: 420px;
 	margin: 30px auto;
 	padding: 22px;
