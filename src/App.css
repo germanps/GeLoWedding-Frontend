@@ -6,7 +6,7 @@ body {
 
 .header {
 	padding: 1rem;
-  padding-top: 0;
+	padding-top: 0;
 	text-align: center;
 }
 
@@ -37,11 +37,14 @@ h1 {
 		-1px -1px 0 #3f2f24,
 		0 0 3px rgba(0, 0, 0, 0.15);
 }
+
 h3 {
 	font-size: 1.5rem;
 	font-weight: 500;
 	color: #000;
 	font-family: "Montserrat", sans-serif;
+	color: #ebdcbd;
+	text-shadow: 1px 1px black;
 }
 
 .subtitle {
@@ -71,12 +74,18 @@ h3 {
 .button {
 	background: #ebe4d6;
 	color: #000;
-	font-weight: bold;
 	border: none;
 	padding: 10px 14px;
 	margin: 0 6px;
 	border-radius: 8px;
 	cursor: pointer;
+	font-family: "Great Vibes", cursive;
+	font-size: 1.5rem;
+	letter-spacing: 2px;
+}
+
+.button.upload {
+	font-size: 1.7rem;
 }
 
 .upload-card {
@@ -91,7 +100,8 @@ h3 {
 
 .gallery {
 	display: grid;
-	grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+	grid-template-columns: repeat(2, 1fr);
+	/* 2 columnas en móvil */
 	gap: 14px;
 	padding: 16px;
 }
@@ -99,7 +109,8 @@ h3 {
 /* Imágenes */
 .gallery img {
 	width: 100%;
-	height: 160px; /* tamaño cómodo para móvil */
+	height: 160px;
+	/* tamaño cómodo para móvil */
 	object-fit: cover;
 	border-radius: 10px;
 
@@ -199,7 +210,8 @@ h3 {
 	max-width: 500px;
 	background: #f5f0e6;
 	padding: 12px;
-	padding-bottom: 72px; /* espacio para barra */
+	padding-bottom: 72px;
+	/* espacio para barra */
 	border-radius: 14px;
 	box-shadow: 0 0 0 6px #9c6b4f;
 	animation: zoomIn 0.25s ease;
@@ -249,6 +261,7 @@ h3 {
 		transform: scale(0.92);
 		opacity: 0;
 	}
+
 	to {
 		transform: scale(1);
 		opacity: 1;

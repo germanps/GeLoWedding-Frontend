@@ -3,7 +3,7 @@ import Layout from "./components/Layout";
 import Upload from "./components/Upload";
 import Gallery from "./components/Gallery";
 import GalleryLogin from "./components/GalleryLogin";
-import ninoh from "./assets/logo.jpg";
+import ninoh from "./assets/logoGirasoles3.png";
 
 export default function App() {
 	const [page, setPage] = useState("upload");

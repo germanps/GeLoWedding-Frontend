@@ -45,7 +45,7 @@ export default function Upload() {
 
 	return (
 		<div className="upload-card">
-			<p style={{ marginTop: 10, color: 'black', fontWeight: 'bold' }}>
+			<p style={{ marginTop: 0, color: 'black', fontWeight: 'bold' }}>
 				Puedes seleccionar varias fotos. Se mostrarán antes de subir.
 			</p>
 			<label className="file-upload">
@@ -69,7 +69,7 @@ export default function Upload() {
 			)}
 
 			<button
-				className="button"
+				className="button upload"
 				onClick={handleUpload}
 				disabled={loading}
 				style={{ marginTop: "15px" }}
